@@ -6,13 +6,13 @@ from threading import Condition
 from http import server
 
 
-PAGE="""\
+PAGE="""\ 
 <html>
 <head>
-<title>Pi Video Streaming Test</title>
+<title>Eh mais ça marche</title>
 </head>
 <body>
-<img src="stream.mjpg" width="1920" height="1080" />
+<img src="stream.mjpg" width=100% height=auto />
 </body>
 </html>
 """
@@ -73,8 +73,9 @@ class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
     allow_reuse_address = True
     daemon_threads = True
 
-with picamera.PiCamera(resolution='1080x1920', framerate=24) as camera:
+with picamera.PiCamera(resolution='1280x720', framerate=24) as camera:
     output = StreamingOutput()
+  # camera.resolution()
     camera.start_recording(output, format='mjpeg')
     camera.rotation = 180
     try:
