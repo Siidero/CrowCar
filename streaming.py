@@ -39,7 +39,7 @@ class StreamingHandler(server.BaseHTTPRequestHandler):
             self.send_header('Location', '/index.html')
             self.end_headers()
         elif self.path == '/index.html':
-            content = PAGE.encode('utf-8')
+            content = PAGE.encode('UTF-8')
             self.send_response(200)
             self.send_header('Content-Type', 'text/html')
             self.send_header('Content-Lenght', len(content))
@@ -73,14 +73,14 @@ class StreamingServer(socketserver.ThreadingMixIn, server.HTTPServer):
     allow_reuse_address = True
     daemon_threads = True
 
-with picamera.PiCamera(resolution='1280x720', framerate=24) as camera:
-    output = StreamingOutput()
-  # camera.resolution()
-    camera.start_recording(output, format='mjpeg')
-    camera.rotation = 180
-    try:
-        address = ('', 8000)
-        server = StreamingServer(address, StreamingHandler)
-        server.serve_forever()
-    finally:
-        camera.stop_recording()
+def PiStreaming():
+    with picamera.PiCamera(resolution='1280x720', framerate=24) as camera:
+        output = StreamingOutput()
+        camera.start_recording(output, format='mjpeg')
+        camera.rotation = 180
+        try:
+            address = ('', 8000)
+            server = StreamingServer(address, StreamingHandler)
+            server.serve_forever()
+        finally:
+            camera.stop_recording()
