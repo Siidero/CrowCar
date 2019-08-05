@@ -33,5 +33,3 @@ def turn_left(speed, temp):
         curr_time = time.time()
         explorerhat.motor.one.backward(speed)
         explorerhat.motor.two.backward(speed)
-#main
-turn_right(50,1)
