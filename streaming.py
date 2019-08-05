@@ -20,7 +20,7 @@ PAGE="""\
 class StreamingOutput(object):
     def __init__(self):
         self.frame = None
-        self.buffer = io.bytesIO()
+        self.buffer = io.BytesIO()
         self.condition = Condition()
 
     def write(self, buf):
