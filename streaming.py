@@ -12,7 +12,7 @@ PAGE="""\
 <title>Eh mais ça marche</title>
 </head>
 <body>
-<img src="stream.mjpg" width=100% height=auto />
+<img src="stream.mjpg" width=100% height=100% />
 </body>
 </html>
 """
